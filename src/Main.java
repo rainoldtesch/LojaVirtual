@@ -148,6 +148,20 @@ public class Main {
             }
             case 8: {
                 Scanner scanner = new Scanner(System.in);
+                System.out.print("--->> Informe o ID do cliente: ");
+                int idCliente = scanner.nextInt();
+
+                Cliente cliente= (Cliente) usuariosDB.getUsuarioPorID(idCliente);
+
+                System.out.print("--->> Informe o ID do produto: ");
+                int idProduto = scanner.nextInt();
+
+                System.out.print("--->> Informe a quantidade: ");
+                int quantidade = scanner.nextInt();
+
+                System.out.println("ID: " + cliente.getId());
+                System.out.println("NOME: " + cliente.getNome());
+                System.out.println("TIPO: " + cliente.getTipoUsuario());
 
                 break;
             }
