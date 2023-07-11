@@ -1,4 +1,5 @@
 import db.EstoquesDB;
+import db.PedidosVendaDB;
 import db.ProdutoDB;
 import db.UsuariosDB;
 import models.*;
@@ -12,6 +13,7 @@ public class Main {
     static ProdutoDB produtoDB = new ProdutoDB();
     static UsuariosDB usuariosDB = new UsuariosDB();
     static EstoquesDB estoquesDB = new EstoquesDB();
+    static PedidosVendaDB pedidosVendaDB = new PedidosVendaDB();
 
     public static void main(String[] args) throws Exception {
         System.out.println(" --- PEDIDO DE VENDAS --- ");
@@ -25,6 +27,8 @@ public class Main {
             System.out.println(" 5 - Listar todos os usuários");
             System.out.println(" 6 - Cadastrar novo estoque de produtos");
             System.out.println(" 7 - Listar todos os estoques");
+            System.out.println(" 8 - Criar Pedido de Venda");
+            System.out.println(" 9 - Listar Pedidos de Venda");
             System.out.println(" 0 - Sair do sistema");
             Scanner scanner = new Scanner(System.in);
             System.out.println(" ");
@@ -140,6 +144,14 @@ public class Main {
                     System.out.println("QUANTIDADE: " + estoque.getQuantidade());
                     System.out.println(" ----------------------------------------- ");
                 }
+                break;
+            }
+            case 8: {
+                Scanner scanner = new Scanner(System.in);
+
+                break;
+            }
+            case 9: {
                 break;
             }
         }
