@@ -152,21 +152,39 @@ public class Main {
                 int idCliente = scanner.nextInt();
 
                 Cliente cliente= (Cliente) usuariosDB.getUsuarioPorID(idCliente);
+                System.out.println("ID: " + cliente.getId());
+                System.out.println("NOME: " + cliente.getNome());
+                System.out.println("TIPO: " + cliente.getTipoUsuario());
+                System.out.println("----------------------------------");
 
                 System.out.print("--->> Informe o ID do produto: ");
                 int idProduto = scanner.nextInt();
+                Produto produto = produtoDB.getProdutoPorID(idProduto);
+                System.out.println("ID PRODUTO: " + produto.getId());
+                System.out.println("DESCRIÇÃO PRODUTO: " + produto.getDescricao());
+                System.out.println("VALIDADE PRODUTO: " + produto.getDataValidade());
+                System.out.println("----------------------------------");
 
                 System.out.print("--->> Informe a quantidade: ");
                 int quantidade = scanner.nextInt();
 
-                System.out.println("ID: " + cliente.getId());
-                System.out.println("NOME: " + cliente.getNome());
-                System.out.println("TIPO: " + cliente.getTipoUsuario());
-
+                PedidoVenda novoPedido = new PedidoVenda(cliente, produto, quantidade);
+                pedidosVendaDB.addNovoPedidoVenda(novoPedido);
                 break;
             }
             case 9: {
-                break;
+                System.out.println(" ----------------------------------------- ");
+                System.out.println(" ------- LISTANDO PEDIDOS DE VENDA ------- ");
+                System.out.println(" ----------------------------------------- ");
+                for(PedidoVenda pedidoVenda : pedidosVendaDB.getPedidoVendas()) {
+                    System.out.println("ID: " + pedidoVenda.getId());
+                    System.out.println("CLIENTE: " + pedidoVenda.getCliente().getNome());
+                    System.out.println("PRODUTO: " + pedidoVenda.getProduto().getDescricao());
+                    System.out.println("QUANTIDADE: " + pedidoVenda.getQuantidade());
+                    System.out.println("VALOR TOTAL: " + pedidoVenda.getValorTotal());
+                    System.out.println(" ----------------------------------------- ");
+                    break;
+                }
             }
         }
     }

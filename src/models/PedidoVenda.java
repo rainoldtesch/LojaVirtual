@@ -12,6 +12,10 @@ public class PedidoVenda {
         this.quantidade = quantidade;
     }
 
+    public double getValorTotal() {
+        return quantidade * produto.getPreco();
+    }
+
     public int getId() {
         return id;
     }
@@ -24,9 +28,7 @@ public class PedidoVenda {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
 
     public Produto getProduto() {
         return produto;
