@@ -20,6 +20,12 @@ public class EstoquesDB {
         }
         return estoques;
     }
+
+    //esse método retorna um estoque específico na classe Main - case 8:
+    public Estoque getEstoqueById(String id) {
+        return estoquesDBMap.get(id);
+    }
+
     //criamos novo método para adicionar novo estoque (recebendo "estoque" como argumento):
     public void addNovoEstoque (Estoque estoque) {
         //fazemos "put()" sendo a chave o "id" do estoque:
