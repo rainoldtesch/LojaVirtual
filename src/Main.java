@@ -157,21 +157,28 @@ public class Main {
                 System.out.println("TIPO: " + cliente.getTipoUsuario());
                 System.out.println("----------------------------------");
 
-                System.out.print("--->> Informe o ID do produto: ");
-                int idProduto = scanner.nextInt();
-                Produto produto = produtoDB.getProdutoPorID(idProduto);
-                System.out.println("ID PRODUTO: " + produto.getId());
-                System.out.println("DESCRIÇÃO PRODUTO: " + produto.getDescricao());
-                System.out.println("VALIDADE PRODUTO: " + produto.getDataValidade());
+                //System.out.print("--->> Informe o ID do produto: ");
+                System.out.print("--->> Informe a descrição do produto do estoque [ CEL por exemplo]: ");
+                //int idProduto = scanner.nextInt();
+                String idEstoque = scanner.next();
+                //Produto produto = produtoDB.getProdutoPorID(idProduto);
+                Estoque estoque = estoquesDB.getEstoqueById(idEstoque);
+                //System.out.println("ID PRODUTO: " + produto.getId());
+                System.out.println("ESTOQUES ID: " + estoque.getId());
+                //System.out.println("DESCRIÇÃO PRODUTO: " + produto.getDescricao());
+                System.out.println("DESCRIÇÃO PRODUTO: " + estoque.getProduto().getId());
+                //System.out.println("VALIDADE PRODUTO: " + produto.getDataValidade());
+                System.out.println("VALIDADE PRODUTO: " + estoque.getProduto().getDataValidade());
                 System.out.println("----------------------------------");
 
-                System.out.print("--->> Informe a quantidade: ");
+                System.out.print("--->> Informe a quantidade a ser vendida: ");
                 int quantidade = scanner.nextInt();
 
-                PedidoVenda novoPedido = new PedidoVenda(cliente, produto, quantidade);
+                PedidoVenda novoPedido = new PedidoVenda(cliente, estoque, quantidade);
                 pedidosVendaDB.addNovoPedidoVenda(novoPedido);
                 break;
             }
+
             case 9: {
                 System.out.println(" ----------------------------------------- ");
                 System.out.println(" ------- LISTANDO PEDIDOS DE VENDA ------- ");
@@ -179,12 +186,12 @@ public class Main {
                 for(PedidoVenda pedidoVenda : pedidosVendaDB.getPedidoVendas()) {
                     System.out.println("ID: " + pedidoVenda.getId());
                     System.out.println("CLIENTE: " + pedidoVenda.getCliente().getNome());
-                    System.out.println("PRODUTO: " + pedidoVenda.getProduto().getDescricao());
+                    System.out.println("PRODUTO: " + pedidoVenda.getEstoque().getProduto().getDescricao());
                     System.out.println("QUANTIDADE: " + pedidoVenda.getQuantidade());
-                    System.out.println("VALOR TOTAL: " + pedidoVenda.getValorTotal());
+                    //System.out.println("VALOR TOTAL: " + pedidoVenda.getValorTotal());
                     System.out.println(" ----------------------------------------- ");
-                    break;
                 }
+                break;
             }
         }
     }
