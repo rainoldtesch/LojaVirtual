@@ -9,6 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import validadores.ValidadorPedidoVenda;
+
 public class Main {
     static ProdutoDB produtoDB = new ProdutoDB();
     static UsuariosDB usuariosDB = new UsuariosDB();
@@ -174,8 +176,21 @@ public class Main {
                 System.out.print("--->> Informe a quantidade a ser vendida: ");
                 int quantidade = scanner.nextInt();
 
+                //criação do novo pedido de venda com cliente + estoque + quantidade:
                 PedidoVenda novoPedido = new PedidoVenda(cliente, estoque, quantidade);
-                pedidosVendaDB.addNovoPedidoVenda(novoPedido);
+
+                //Validação do pedido de venda - implementado pelo import da classe ValidadorPedidoVenda.java:;
+                ValidadorPedidoVenda validadorPedidoVenda = new ValidadorPedidoVenda(novoPedido);
+                //fazemos um if:
+                //Se o validadorPedidoVenda é ehValido; ou seja, se passar das nossas condições
+                //      sim, adicionamos novo Pedido de vendas.
+                //Senão, damos uma impressão na tela com o validadorPedidoVenda:
+                //      chamando .getErro()
+                if (validadorPedidoVenda.ehValido()) {
+                    pedidosVendaDB.addNovoPedidoVenda(novoPedido);
+                } else {
+                    System.out.println(validadorPedidoVenda.getErros());
+                }
                 break;
             }
 
